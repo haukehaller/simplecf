@@ -10,3 +10,5 @@ plugin.tx_simplecf.settings.toEmail =
 plugin.tx_simplecf.settings.toName = Contactform
 # cat=Contactform/settings; type=int; label=UID of contact form target/confirmation page
 plugin.tx_simplecf.settings.targetPageUid =
+# cat=Contactform/settings; type=string; label=Mandatory form fields
+plugin.tx_simplecf.settings.mandatoryFields = name,message

@@ -28,6 +28,8 @@ namespace DPN\Simplecf\Validation\Validator;
  ***************************************************************/
 
 use DPN\Simplecf\Domain\Model\ContactFormSubmission;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Validation\Validator\GenericObjectValidator;
 
@@ -44,6 +46,11 @@ class ContactFormSubmissionValidator extends GenericObjectValidator {
 	protected $objectManager;
 
 	/**
+	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+	 */
+	protected $configurationManager;
+
+	/**
 	 * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
 	 */
 	public function injectObjectManager(ObjectManager $objectManager) {
@@ -51,14 +58,28 @@ class ContactFormSubmissionValidator extends GenericObjectValidator {
 	}
 
 	/**
+	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $manager
+	 */
+	public function injectConfigurationManager(ConfigurationManagerInterface $manager) {
+		$this->configurationManager = $manager;
+	}
+
+	/**
 	 * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $value
 	 * @return \TYPO3\CMS\Extbase\Error\Result
 	 */
 	public function validate($value) {
+		$settings  = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+		$mandatoryFields = GeneralUtility::trimExplode(',', $settings['mandatoryFields']);
+
 		$contactBy = $value->getContactBy();
-		/** @var \TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator $notEmptyValidator */
-		$notEmptyValidator = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\Validator\\NotEmptyValidator');
-		$this->addPropertyValidator($contactBy, $notEmptyValidator);
+		array_push($mandatoryFields, $contactBy);
+
+		foreach ($mandatoryFields as $field) {
+			/** @var \TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator $notEmptyValidator */
+			$notEmptyValidator = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\Validator\\NotEmptyValidator');
+			$this->addPropertyValidator($field, $notEmptyValidator);
+		}
 
 		return parent::validate($value);
 	}

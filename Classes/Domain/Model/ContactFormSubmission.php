@@ -45,7 +45,6 @@ class ContactFormSubmission extends AbstractValueObject {
 
 	/**
 	 * @var string
-	 * @validate NotEmpty
 	 */
 	protected $name;
 
@@ -72,7 +71,6 @@ class ContactFormSubmission extends AbstractValueObject {
 
 	/**
 	 * @var string
-	 * @validate NotEmpty
 	 */
 	protected $message;
 
