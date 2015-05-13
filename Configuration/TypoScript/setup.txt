@@ -5,11 +5,11 @@ plugin.tx_simplecf {
 		layoutRootPath = EXT:simplecf/Resources/Private/Layouts/
 	}
 	settings {
-		contactFormSubject = {$plugin.tx_simplecf.settings.contactFormSubject}
-		contactFormFromEmail = {$plugin.tx_simplecf.settings.contactFormFromEmail}
-		contactFormFromName = {$plugin.tx_simplecf.settings.contactFormFromName}
-		contactFormToEmail = {$plugin.tx_simplecf.settings.contactFormToEmail}
-		contactFormToName = {$plugin.tx_simplecf.settings.contactFormToName}
-		contactFormTargetPageUid = {$plugin.tx_simplecf.settings.contactFormTargetPageUid}
+		subject = {$plugin.tx_simplecf.settings.subject}
+		fromEmail = {$plugin.tx_simplecf.settings.fromEmail}
+		fromName = {$plugin.tx_simplecf.settings.fromName}
+		toEmail = {$plugin.tx_simplecf.settings.toEmail}
+		toName = {$plugin.tx_simplecf.settings.toName}
+		targetPageUid = {$plugin.tx_simplecf.settings.targetPageUid}
 	}
 }

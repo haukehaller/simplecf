@@ -72,7 +72,7 @@ class ContactFormController extends ActionController {
 	 */
 	public function submitAction(ContactFormSubmission $submission) {
 		$this->contactFormService->sendEmail($submission);
-		$targetPageUid = (integer) $this->settings['contactFormTargetPageUid'];
+		$targetPageUid = (integer) $this->settings['targetPageUid'];
 		if (0 === $targetPageUid) {
 			$this->redirect('confirm');
 		} else {

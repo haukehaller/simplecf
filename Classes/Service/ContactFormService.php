@@ -58,12 +58,12 @@ class ContactFormService {
 	public function sendEmail(ContactFormSubmission $submission) {
 		$settings  = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
 
-		$charset   = $settings['contactFormCharset'];
-		$subject   = $settings['contactFormSubject'];
-		$fromEmail = $settings['contactFormFromEmail'];
-		$fromName  = $settings['contactFormFromName'];
-		$toEmail   = $settings['contactFormToEmail'];
-		$toName    = $settings['contactFormToName'];
+		$charset   = $settings['charset'];
+		$subject   = $settings['subject'];
+		$fromEmail = $settings['fromEmail'];
+		$fromName  = $settings['fromName'];
+		$toEmail   = $settings['toEmail'];
+		$toName    = $settings['toName'];
 
 		$htmlView = $this->getView('ContactForm', 'html');
 		$htmlView->assign('submission', $submission);
