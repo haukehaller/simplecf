@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages">
+		<body>
+			<trans-unit id="tx_simplecf_contactform_received">
+				<source>Contact form received at %s</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_street">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_message">
+				<source>Message</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_contactby">
+				<source>Please reply</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_contactby_phone">
+				<source>by phone</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_contactby_email">
+				<source>by email</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_submit">
+				<source>Submit</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_captcha">
+				<source>Security</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_error_1221560718">
+				<source>Please enter a value.</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_error_1221559976">
+				<source>Please enter a valid email address.</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_error_9221561048">
+				<source>Your input didn't match the displayed characters.</source>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_thanks">
+				<source>Thanks for contacting us!</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

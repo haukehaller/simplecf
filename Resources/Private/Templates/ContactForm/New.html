@@ -1,0 +1,88 @@
+{namespace freeCap=SJBR\SrFreecap\ViewHelpers}
+
+<f:layout name="ContactForm/Default"/>
+
+<f:section name="Main">
+	<f:form name="submission" object="{submission}" action="submit" class="contactform">
+		<div class="formrow">
+			<label>{f:translate(key: 'tx_simplecf_contactform_name')}</label>
+			<f:form.textfield property="name" class="formfield"/>
+			<f:form.validationResults for="submission.name">
+				<f:for each="{validationResults.flattenedErrors}" as="error">
+					<div class="formerror">{f:translate(key: 'tx_simplecf_contactform_error_{error.0.code}')}</div>
+				</f:for>
+			</f:form.validationResults>
+		</div>
+		<div class="formrow">
+			<label>{f:translate(key: 'tx_simplecf_contactform_street')}</label>
+			<f:form.textfield property="street" class="formfield"/>
+			<f:form.validationResults for="submission.street">
+				<f:for each="{validationResults.flattenedErrors}" as="error">
+					<div class="formerror">{f:translate(key: 'tx_simplecf_contactform_error_{error.0.code}')}</div>
+				</f:for>
+			</f:form.validationResults>
+		</div>
+		<div class="formrow">
+			<label>{f:translate(key: 'tx_simplecf_contactform_city')}</label>
+			<f:form.textfield property="city" class="formfield"/>
+			<f:form.validationResults for="submission.city">
+				<f:for each="{validationResults.flattenedErrors}" as="error">
+					<div class="formerror">{f:translate(key: 'tx_simplecf_contactform_error_{error.0.code}')}</div>
+				</f:for>
+			</f:form.validationResults>
+		</div>
+		<div class="formrow">
+			<label>{f:translate(key: 'tx_simplecf_contactform_phone')}</label>
+			<f:form.textfield property="phone" class="formfield"/>
+			<f:form.validationResults for="submission.phone">
+				<f:for each="{validationResults.flattenedErrors}" as="error">
+					<div class="formerror">{f:translate(key: 'tx_simplecf_contactform_error_{error.0.code}')}</div>
+				</f:for>
+			</f:form.validationResults>
+		</div>
+		<div class="formrow">
+			<label>{f:translate(key: 'tx_simplecf_contactform_email')}</label>
+			<f:form.textfield property="email" class="formfield"/>
+			<f:form.validationResults for="submission.email">
+				<f:for each="{validationResults.flattenedErrors}" as="error">
+					<div class="formerror">{f:translate(key: 'tx_simplecf_contactform_error_{error.0.code}')}</div>
+				</f:for>
+			</f:form.validationResults>
+		</div>
+		<div class="formrow">
+			<label>{f:translate(key: 'tx_simplecf_contactform_message')}</label>
+			<f:form.textarea property="message" rows="10" cols="50" class="formfield"/>
+			<f:form.validationResults for="submission.message">
+				<f:for each="{validationResults.flattenedErrors}" as="error">
+					<div class="formerror">{f:translate(key: 'tx_simplecf_contactform_error_{error.0.code}')}</div>
+				</f:for>
+			</f:form.validationResults>
+		</div>
+		<div class="formrow">
+			<label>{f:translate(key: 'tx_simplecf_contactform_contactby')}</label>
+			<div class="formitem">
+				<f:form.radio property="contactBy" value="email"/> {f:translate(key: 'tx_simplecf_contactform_contactby_email')}<br>
+				<f:form.radio property="contactBy" value="phone"/> {f:translate(key: 'tx_simplecf_contactform_contactby_phone')}
+			</div>
+		</div>
+		<div class="formrow">
+			<label>{f:translate(key: 'tx_simplecf_contactform_captcha')}</label>
+			<div class="formitem">
+				<f:form.textfield property="captcha" size="15" class="captchafield"/>
+				<div class="captcha">
+					<freeCap:image/>
+					<freeCap:audio/>
+				</div>
+			</div>
+			<f:form.validationResults for="submission.captcha">
+				<f:for each="{validationResults.flattenedErrors}" as="error">
+					<div class="formerror">{f:translate(key: 'tx_simplecf_contactform_error_{error.0.code}')}</div>
+				</f:for>
+			</f:form.validationResults>
+		</div>
+		<div class="formrow">
+			<label>&nbsp;</label>
+			<f:form.submit value="{f:translate(key: 'tx_simplecf_contactform_submit')}" class="formfield button"/>
+		</div>
+	</f:form>
+</f:section>

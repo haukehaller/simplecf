@@ -1,0 +1,36 @@
+<f:layout name="Email/Html" />
+
+<f:section name="Main">
+	<h1><f:translate key="tx_simplecf_contactform_received" arguments="{0: '{f:format.date(date: \'now\', format: \'d.m.Y, H:i\')}'}"/></h1>
+	<table>
+		<tr>
+			<th align="left" valign="top">{f:translate(key: 'tx_simplecf_contactform_name')}</th>
+			<td valign="top">{submission.name}</td>
+		</tr>
+		<tr>
+			<th align="left" valign="top">{f:translate(key: 'tx_simplecf_contactform_street')}</th>
+			<td valign="top">{submission.street}</td>
+		</tr>
+		<tr>
+			<th align="left" valign="top">{f:translate(key: 'tx_simplecf_contactform_city')}</th>
+			<td valign="top">{submission.city}</td>
+		</tr>
+		<tr>
+			<th align="left" valign="top">{f:translate(key: 'tx_simplecf_contactform_phone')}</th>
+			<td valign="top">{submission.phone}</td>
+		</tr>
+		<tr>
+			<th align="left" valign="top">{f:translate(key: 'tx_simplecf_contactform_email')}</th>
+			<td valign="top">{submission.email}</td>
+		</tr>
+		<tr>
+			<th align="left" valign="top">{f:translate(key: 'tx_simplecf_contactform_contactby')}</th>
+			<td valign="top">{f:translate(key: 'tx_simplecf_contactform_contactby_{submission.contactBy}')}</td>
+		</tr>
+		<tr>
+			<th align="left" valign="top">{f:translate(key: 'tx_simplecf_contactform_message')}</th>
+			<td valign="top"><f:format.nl2br>{submission.message}</f:format.nl2br></td>
+		</tr>
+	</table>
+</f:section>
+

@@ -1,0 +1,16 @@
+<f:layout name="Email/Plain" />
+
+<f:section name="Main">
+<f:translate key="tx_simplecf_contactform_received" arguments="{0: '{f:format.date(date: \'now\', format: \'d.m.Y\')}'}"/>
+
+{f:translate(key: 'tx_simplecf_contactform_name')}: {submission.name}
+{f:translate(key: 'tx_simplecf_contactform_street')}: {submission.street}
+{f:translate(key: 'tx_simplecf_contactform_city')}: {submission.city}
+{f:translate(key: 'tx_simplecf_contactform_phone')}: {submission.phone}
+{f:translate(key: 'tx_simplecf_contactform_email')}: {submission.email}
+{f:translate(key: 'tx_simplecf_contactform_contactby')}: {f:translate(key: 'tx_simplecf_contactform_contactby_{submission.contactBy}')}
+
+{f:translate(key: 'tx_simplecf_contactform_message')}:
+{submission.message}
+</f:section>
+

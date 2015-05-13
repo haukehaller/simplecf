@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages">
+		<body>
+			<trans-unit id="tx_simplecf_contactform_received">
+				<target>Kontaktformular vom %s Uhr</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_name">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_street">
+				<target>Straße, Nr.</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_city">
+				<target>PLZ Ort</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_phone">
+				<target>Telefon</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_email">
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_message">
+				<target>Mitteilung</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_contactby">
+				<target>Kontaktwunsch</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_contactby_phone">
+				<target>per Telefon</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_contactby_email">
+				<target>per E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_submit">
+				<target>Absenden</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_captcha">
+				<target>Sicherheitsabfrage</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_error_1221560718">
+				<target>Bitte füllen Sie dieses Feld aus.</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_error_1221559976">
+				<target>Bitte geben Sie eine gültige E-Mail Adresse ein.</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_error_9221561048">
+				<target>Ihre Eingabe stimmte nicht mit der Grafik überein.</target>
+			</trans-unit>
+			<trans-unit id="tx_simplecf_contactform_thanks">
+				<target>Vielen Dank für Ihre Anfrage!</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

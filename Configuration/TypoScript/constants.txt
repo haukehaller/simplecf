@@ -1,0 +1,12 @@
+# cat=Contactform/settings; type=string; label=Contact form email subject
+plugin.tx_simplecf.settings.contactFormSubject = New contact form submission
+# cat=Contactform/settings; type=string; label=Email of contact form sender
+plugin.tx_simplecf.settings.contactFormFromEmail =
+# cat=Contactform/settings; type=string; label=Name of contact form sender
+plugin.tx_simplecf.settings.contactFormFromName = Contactform
+# cat=Contactform/settings; type=string; label=Email address of contact form receipient
+plugin.tx_simplecf.settings.contactFormToEmail =
+# cat=Contactform/settings; type=string; label=Name of contact form receipient
+plugin.tx_simplecf.settings.contactFormToName = Contactform
+# cat=Contactform/settings; type=int; label=UID of contact form target/confirmation page
+plugin.tx_simplecf.settings.contactFormTargetPageUid =
