@@ -58,10 +58,10 @@ class ContactFormService {
 	public function sendEmail(ContactFormSubmission $submission) {
 		$settings  = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
 
+		$fromEmail = TRUE === (boolean)$settings['useUserMailAddress'] ? $submission->getEmail() : $settings['fromEmail'];
+		$fromName  = $settings['fromName'];
 		$charset   = $settings['charset'];
 		$subject   = $settings['subject'];
-		$fromEmail = $settings['fromEmail'];
-		$fromName  = $settings['fromName'];
 		$toEmail   = $settings['toEmail'];
 		$toName    = $settings['toName'];
 

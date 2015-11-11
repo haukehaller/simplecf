@@ -12,3 +12,5 @@ plugin.tx_simplecf.settings.toName = Contactform
 plugin.tx_simplecf.settings.targetPageUid =
 # cat=Contactform/settings; type=string; label=Mandatory form fields
 plugin.tx_simplecf.settings.mandatoryFields = name,message
+# cat=Contactform/settings; type=boolean; label=Use user mail address for from mail address
+plugin.tx_simplecf.settings.useUserMailAddress =

@@ -12,5 +12,6 @@ plugin.tx_simplecf {
 		toName = {$plugin.tx_simplecf.settings.toName}
 		targetPageUid = {$plugin.tx_simplecf.settings.targetPageUid}
 		mandatoryFields = {$plugin.tx_simplecf.settings.mandatoryFields}
+		useUserMailAddress = {$plugin.tx_simplecf.settings.useUserMailAddress}
 	}
 }
