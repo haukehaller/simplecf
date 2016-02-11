@@ -60,20 +60,13 @@ class ContactFormSubmissionValidator extends GenericObjectValidator
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $manager
-     */
-    public function injectConfigurationManager(ConfigurationManagerInterface $manager)
-    {
-        $this->configurationManager = $manager;
-    }
-
-    /**
      * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $value
      * @return \TYPO3\CMS\Extbase\Error\Result
      */
     public function validate($value)
     {
-        $settings = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+        $fullSettings = GeneralUtility::removeDotsFromTS($this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT));
+        $settings = $fullSettings['plugin']['tx_simplecf']['settings'];
         $mandatoryFields = GeneralUtility::trimExplode(',', $settings['mandatoryFields']);
 
         $contactBy = $value->getContactBy();
