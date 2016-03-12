@@ -6,7 +6,7 @@ namespace DPN\Simplecf\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2015 Björn Fromme <fromme@dreipunktnull.com>, dreipunktnull
+ *  (c) 2016 Björn Fromme <fromme@dreipunktnull.com>, dreipunktnull
  *
  *  All rights reserved
  *
@@ -37,57 +37,62 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  * @package DPN\Simplecf
  * @subpackage Controller
  */
-class ContactFormController extends ActionController {
+class ContactFormController extends ActionController
+{
 
-	/**
-	 * @var \DPN\Simplecf\Service\ContactFormService
-	 */
-	protected $contactFormService;
+    /**
+     * @var \DPN\Simplecf\Service\ContactFormService
+     */
+    protected $contactFormService;
 
-	/**
-	 * @param \DPN\Simplecf\Service\ContactFormService $service
-	 */
-	public function injectContactFormService(ContactFormService $service) {
-		$this->contactFormService = $service;
-	}
+    /**
+     * @param \DPN\Simplecf\Service\ContactFormService $service
+     */
+    public function injectContactFormService(ContactFormService $service)
+    {
+        $this->contactFormService = $service;
+    }
 
-	/**
-	 * Action new
-	 *
-	 * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $submission
-	 * @ignorevalidation $submission
-	 */
-	public function newAction(ContactFormSubmission $submission = NULL) {
-		if (NULL === $submission) {
-			$submission = new ContactFormSubmission();
-		}
-		$this->view->assign('submission', $submission);
-	}
+    /**
+     * Action new
+     *
+     * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $submission
+     * @ignorevalidation $submission
+     */
+    public function newAction(ContactFormSubmission $submission = NULL)
+    {
+        if (NULL === $submission) {
+            $submission = new ContactFormSubmission();
+        }
+        $this->view->assign('submission', $submission);
+    }
 
-	/**
-	 * Action submit
-	 *
-	 * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $submission
-	 * @validate $submission DPN\Simplecf\Validation\Validator\ContactFormSubmissionValidator
-	 */
-	public function submitAction(ContactFormSubmission $submission) {
-		$this->contactFormService->sendEmail($submission);
-		$targetPageUid = (integer) $this->settings['targetPageUid'];
-		if (0 === $targetPageUid) {
-			$this->redirect('confirm');
-		} else {
-			$uriBuilder = $this->getControllerContext()->getUriBuilder();
-			$uriBuilder->reset();
-			$uriBuilder->setTargetPageUid($targetPageUid);
-			$uri = $uriBuilder->build();
-			$this->redirectToUri($uri);
-		}
-	}
+    /**
+     * Action submit
+     *
+     * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $submission
+     * @validate $submission DPN\Simplecf\Validation\Validator\ContactFormSubmissionValidator
+     */
+    public function submitAction(ContactFormSubmission $submission)
+    {
+        $this->contactFormService->sendEmail($submission);
+        $targetPageUid = (integer)$this->settings['targetPageUid'];
+        if (0 === $targetPageUid) {
+            $this->redirect('confirm');
+        } else {
+            $uriBuilder = $this->getControllerContext()->getUriBuilder();
+            $uriBuilder->reset();
+            $uriBuilder->setTargetPageUid($targetPageUid);
+            $uri = $uriBuilder->build();
+            $this->redirectToUri($uri);
+        }
+    }
 
-	/**
-	 * Action confirm
-	 */
-	public function confirmAction() {
-	}
+    /**
+     * Action confirm
+     */
+    public function confirmAction()
+    {
+    }
 
 }

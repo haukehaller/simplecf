@@ -6,7 +6,7 @@ namespace DPN\Simplecf\Validation\Validator;
  *
  *  Copyright notice
  *
- *  (c) 2015 Björn Fromme <fromme@dreipunktnull.com>, dreipunktnull
+ *  (c) 2016 Björn Fromme <fromme@dreipunktnull.com>, dreipunktnull
  *
  *  All rights reserved
  *
@@ -38,58 +38,63 @@ use TYPO3\CMS\Extbase\Validation\Validator\GenericObjectValidator;
  * @package DPN\Simplecf
  * @subpackage Validation\Validator
  */
-class ContactFormSubmissionValidator extends GenericObjectValidator {
+class ContactFormSubmissionValidator extends GenericObjectValidator
+{
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-	 */
-	protected $configurationManager;
+    /**
+     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     */
+    protected $configurationManager;
 
-	/**
-	 * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
-	 */
-	public function injectObjectManager(ObjectManager $objectManager) {
-		$this->objectManager = $objectManager;
-	}
+    /**
+     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     */
+    public function injectObjectManager(ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
 
-	/**
-	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $manager
-	 */
-	public function injectConfigurationManager(ConfigurationManagerInterface $manager) {
-		$this->configurationManager = $manager;
-	}
+    /**
+     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $manager
+     */
+    public function injectConfigurationManager(ConfigurationManagerInterface $manager)
+    {
+        $this->configurationManager = $manager;
+    }
 
-	/**
-	 * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $value
-	 * @return \TYPO3\CMS\Extbase\Error\Result
-	 */
-	public function validate($value) {
-		$settings  = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
-		$mandatoryFields = GeneralUtility::trimExplode(',', $settings['mandatoryFields']);
+    /**
+     * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $value
+     * @return \TYPO3\CMS\Extbase\Error\Result
+     */
+    public function validate($value)
+    {
+        $settings = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+        $mandatoryFields = GeneralUtility::trimExplode(',', $settings['mandatoryFields']);
 
-		$contactBy = $value->getContactBy();
-		array_push($mandatoryFields, $contactBy);
+        $contactBy = $value->getContactBy();
+        array_push($mandatoryFields, $contactBy);
 
-		foreach ($mandatoryFields as $field) {
-			/** @var \TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator $notEmptyValidator */
-			$notEmptyValidator = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\Validator\\NotEmptyValidator');
-			$this->addPropertyValidator($field, $notEmptyValidator);
-		}
+        foreach ($mandatoryFields as $field) {
+            /** @var \TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator $notEmptyValidator */
+            $notEmptyValidator = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\Validator\\NotEmptyValidator');
+            $this->addPropertyValidator($field, $notEmptyValidator);
+        }
 
-		return parent::validate($value);
-	}
+        return parent::validate($value);
+    }
 
-	/**
-	 * @param object $object
-	 * @return boolean
-	 */
-	public function canValidate($object) {
-		return $object instanceof ContactFormSubmission;
-	}
+    /**
+     * @param object $object
+     * @return boolean
+     */
+    public function canValidate($object)
+    {
+        return $object instanceof ContactFormSubmission;
+    }
 
 }

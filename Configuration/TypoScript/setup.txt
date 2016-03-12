@@ -1,17 +1,18 @@
 plugin.tx_simplecf {
-	view {
-		templateRootPath = EXT:simplecf/Resources/Private/Templates/
-		partialRootPath = EXT:simplecf/Resources/Private/Partials/
-		layoutRootPath = EXT:simplecf/Resources/Private/Layouts/
-	}
-	settings {
-		subject = {$plugin.tx_simplecf.settings.subject}
-		fromEmail = {$plugin.tx_simplecf.settings.fromEmail}
-		fromName = {$plugin.tx_simplecf.settings.fromName}
-		toEmail = {$plugin.tx_simplecf.settings.toEmail}
-		toName = {$plugin.tx_simplecf.settings.toName}
-		targetPageUid = {$plugin.tx_simplecf.settings.targetPageUid}
-		mandatoryFields = {$plugin.tx_simplecf.settings.mandatoryFields}
-		useUserMailAddress = {$plugin.tx_simplecf.settings.useUserMailAddress}
-	}
+    view {
+        templateRootPath = EXT:simplecf/Resources/Private/Templates/
+        partialRootPath = EXT:simplecf/Resources/Private/Partials/
+        layoutRootPath = EXT:simplecf/Resources/Private/Layouts/
+    }
+
+    settings {
+        subject = {$plugin.tx_simplecf.settings.subject}
+        fromEmail = {$plugin.tx_simplecf.settings.fromEmail}
+        fromName = {$plugin.tx_simplecf.settings.fromName}
+        toEmail = {$plugin.tx_simplecf.settings.toEmail}
+        toName = {$plugin.tx_simplecf.settings.toName}
+        targetPageUid = {$plugin.tx_simplecf.settings.targetPageUid}
+        mandatoryFields = {$plugin.tx_simplecf.settings.mandatoryFields}
+        useUserMailAddress = {$plugin.tx_simplecf.settings.useUserMailAddress}
+    }
 }

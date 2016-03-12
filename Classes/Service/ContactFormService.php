@@ -6,7 +6,7 @@ namespace DPN\Simplecf\Service;
  *
  *  Copyright notice
  *
- *  (c) 2015 Björn Fromme <fromme@dreipunktnull.com>, dreipunktnull
+ *  (c) 2016 Björn Fromme <fromme@dreipunktnull.com>, dreipunktnull
  *
  *  All rights reserved
  *
@@ -36,80 +36,84 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  * @package DPN\Simplecf
  * @subpackage Service
  */
-class ContactFormService {
+class ContactFormService
+{
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-	 */
-	protected $configurationManager;
+    /**
+     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     */
+    protected $configurationManager;
 
-	/**
-	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $manager
-	 */
-	public function injectConfigurationManager(ConfigurationManagerInterface $manager) {
-		$this->configurationManager = $manager;
-	}
+    /**
+     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $manager
+     */
+    public function injectConfigurationManager(ConfigurationManagerInterface $manager)
+    {
+        $this->configurationManager = $manager;
+    }
 
-	/**
-	 * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $submission
-	 * @return boolean
-	 * @throws \TYPO3\CMS\Extbase\Configuration\Exception
-	 */
-	public function sendEmail(ContactFormSubmission $submission) {
-		$settings  = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+    /**
+     * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $submission
+     * @return boolean
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception
+     */
+    public function sendEmail(ContactFormSubmission $submission)
+    {
+        $settings = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
 
-		$fromEmail = TRUE === (boolean)$settings['useUserMailAddress'] ? $submission->getEmail() : $settings['fromEmail'];
-		$fromName  = $settings['fromName'];
-		$charset   = $settings['charset'];
-		$subject   = $settings['subject'];
-		$toEmail   = $settings['toEmail'];
-		$toName    = $settings['toName'];
+        $fromEmail = TRUE === (boolean)$settings['useUserMailAddress'] ? $submission->getEmail() : $settings['fromEmail'];
+        $fromName = $settings['fromName'];
+        $charset = $settings['charset'];
+        $subject = $settings['subject'];
+        $toEmail = $settings['toEmail'];
+        $toName = $settings['toName'];
 
-		$htmlView = $this->getView('ContactForm', 'html');
-		$htmlView->assign('submission', $submission);
-		$htmlView->assign('charset', $charset);
-		$htmlView->assign('title', $subject);
-		$htmlBody = $htmlView->render();
+        $htmlView = $this->getView('ContactForm', 'html');
+        $htmlView->assign('submission', $submission);
+        $htmlView->assign('charset', $charset);
+        $htmlView->assign('title', $subject);
+        $htmlBody = $htmlView->render();
 
-		$plainView = $this->getView('ContactForm', 'txt');
-		$plainView->assign('submission', $submission);
-		$plainView->assign('charset', $charset);
-		$plainView->assign('title', $subject);
-		$plainBody = $plainView->render();
+        $plainView = $this->getView('ContactForm', 'txt');
+        $plainView->assign('submission', $submission);
+        $plainView->assign('charset', $charset);
+        $plainView->assign('title', $subject);
+        $plainBody = $plainView->render();
 
-		/** @var \TYPO3\CMS\Core\Mail\MailMessage $message */
-		$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+        /** @var \TYPO3\CMS\Core\Mail\MailMessage $message */
+        $message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
 
-		$message->setTo(array($toEmail => $toName));
-		$message->setFrom(array($fromEmail => $fromName));
-		$message->setSubject($subject);
-		$message->setCharset($charset);
-		$message->setBody($htmlBody, 'text/html');
-		$message->addPart($plainBody, 'text/plain');
+        $message->setTo(array($toEmail => $toName));
+        $message->setFrom(array($fromEmail => $fromName));
+        $message->setSubject($subject);
+        $message->setCharset($charset);
+        $message->setBody($htmlBody, 'text/html');
+        $message->addPart($plainBody, 'text/plain');
 
-		$message->send();
+        $message->send();
 
-		return $message->isSent();
-	}
+        return $message->isSent();
+    }
 
-	/**
-	 * @param string $templateName
-	 * @param string $format
-	 * @return \TYPO3\CMS\Fluid\View\StandaloneView
-	 */
-	protected function getView($templateName, $format = 'html') {
-		/** @var \TYPO3\CMS\Fluid\View\StandaloneView $view */
-		$view = GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
-		$view->setFormat($format);
-		$view->getRequest()->setControllerExtensionName('simplecf');
-		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-		$templateRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
-		$layoutRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['layoutRootPath']);
-		$templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.' . $format;
-		$view->setTemplatePathAndFilename($templatePathAndFilename);
-		$view->setLayoutRootPaths(array($layoutRootPath));
+    /**
+     * @param string $templateName
+     * @param string $format
+     * @return \TYPO3\CMS\Fluid\View\StandaloneView
+     */
+    protected function getView($templateName, $format = 'html')
+    {
+        /** @var \TYPO3\CMS\Fluid\View\StandaloneView $view */
+        $view = GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+        $view->setFormat($format);
+        $view->getRequest()->setControllerExtensionName('simplecf');
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $templateRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
+        $layoutRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['layoutRootPath']);
+        $templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.' . $format;
+        $view->setTemplatePathAndFilename($templatePathAndFilename);
+        $view->setLayoutRootPaths(array($layoutRootPath));
 
-		return $view;
-	}
+        return $view;
+    }
 
 }
