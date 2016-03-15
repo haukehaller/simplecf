@@ -60,6 +60,14 @@ class ContactFormSubmissionValidator extends GenericObjectValidator
     }
 
     /**
+     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $manager
+     */
+    public function injectConfigurationManager(ConfigurationManagerInterface $manager)
+    {
+        $this->configurationManager = $manager;
+    }
+
+    /**
      * @param \DPN\Simplecf\Domain\Model\ContactFormSubmission $value
      * @return \TYPO3\CMS\Extbase\Error\Result
      */
