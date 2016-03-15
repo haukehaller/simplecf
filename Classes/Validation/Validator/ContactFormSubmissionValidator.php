@@ -73,8 +73,7 @@ class ContactFormSubmissionValidator extends GenericObjectValidator
      */
     public function validate($value)
     {
-        $fullSettings = GeneralUtility::removeDotsFromTS($this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT));
-        $settings = $fullSettings['plugin']['tx_simplecf']['settings'];
+        $settings = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, 'Simplecf', 'tx_simplecf');
         $mandatoryFields = GeneralUtility::trimExplode(',', $settings['mandatoryFields']);
 
         $contactBy = $value->getContactBy();
